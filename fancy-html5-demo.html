@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fancy HTML5 Demo</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #6e8efb, #a777e3);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        header {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px #333;
+        }
+        section {
+            background: rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(6px);
+            margin-bottom: 2rem;
+        }
+        video, canvas {
+            display: block;
+            margin: 1rem auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        button {
+            background: #fff;
+            color: #6e8efb;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background: #a777e3;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>Welcome to a Fancy HTML5 Page!</header>
+    <section>
+        <h2>HTML5 Video</h2>
+        <video controls width="400">
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+    <section>
+        <h2>HTML5 Canvas Animation</h2>
+        <canvas id="fancyCanvas" width="400" height="200"></canvas>
+        <button onclick="startAnimation()">Start Animation</button>
+    </section>
+    <section>
+        <h2>HTML5 Form</h2>
+        <form>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+    <script>
+        function startAnimation() {
+            const canvas = document.getElementById('fancyCanvas');
+            const ctx = canvas.getContext('2d');
+            let x = 0;
+            let direction = 1;
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.beginPath();
+                ctx.arc(x, 100, 30, 0, 2 * Math.PI);
+                ctx.fillStyle = '#a777e3';
+                ctx.shadowColor = '#6e8efb';
+                ctx.shadowBlur = 20;
+                ctx.fill();
+                x += direction * 4;
+                if (x > canvas.width - 30 || x < 30) direction *= -1;
+                requestAnimationFrame(animate);
+            }
+            animate();
+        }
+    </script>
+</body>
+</html>
